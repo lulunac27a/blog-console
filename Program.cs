@@ -37,6 +37,22 @@ while (true)
       logger.Info("Blog added - {name}", name);
       logger.Info("Program ended");
       break;
-  }
 
-}
+    case '3':
+
+      // Create and save a new Post from a Blog
+      Console.WriteLine("Select Blog you would like to post:");
+      int id = Convert.ToInt32(Console.ReadLine());
+      foreach (var item in db.Blogs)
+      {
+        Console.WriteLine($"{item.BlogId}. {item.Name}");
+      }
+      var blog = db.Blogs.First(b => b.BlogId == id);
+      Console.WriteLine("Enter Post title:");
+      string? title = Console.ReadLine();
+      Console.WriteLine("Enter Post content:");
+      string? content = Console.ReadLine();
+      blog.Posts?.Add(new Post { Title = title, BlogId = id, Content = content })
+      break;
+
+  }
